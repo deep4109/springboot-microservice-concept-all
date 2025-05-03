@@ -27,6 +27,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeoutException;
+
 /**
  * @author Eazy Bytes
  */
@@ -203,8 +205,9 @@ public class AccountsController {
     )
     @Retry(name = "getBuildInfo",fallbackMethod = "getBuildInfoFallback")
     @GetMapping("/build-info")
-    public ResponseEntity<String> getBuildInfo() {
+    public ResponseEntity<String> getBuildInfo() throws TimeoutException {
         logger.debug("getBuildInfo() method Invoked");
+       // throw new TimeoutException();
         return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(buildVersion);
