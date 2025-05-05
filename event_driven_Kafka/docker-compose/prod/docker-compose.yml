@@ -250,7 +250,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "eazybytes/configserver:s14"
+    image: "deep0983/configserver:s14"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -267,7 +267,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "eazybytes/eurekaserver:s14"
+    image: "deep0983/eurekaserver:s14"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -288,7 +288,7 @@ services:
       OTEL_SERVICE_NAME: "eurekaserver"
 
   accounts:
-    image: "eazybytes/accounts:s14"
+    image: "deep0983/accounts:s14"
     container_name: accounts-ms
     healthcheck:
       test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
@@ -310,7 +310,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "eazybytes/loans:s14"
+    image: "deep0983/loans:s14"
     container_name: loans-ms
     depends_on:
       configserver:
@@ -331,7 +331,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "eazybytes/cards:s14"
+    image: "deep0983/cards:s14"
     container_name: cards-ms
     depends_on:
       configserver:
@@ -352,7 +352,7 @@ services:
       service: microservice-eureka-config
 
   message:
-    image: "eazybytes/message:s14"
+    image: "deep0983/message:s14"
     container_name: message-ms
     environment:
       SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
@@ -361,7 +361,7 @@ services:
       service: network-deploy-service
 
   gatewayserver:
-    image: "eazybytes/gatewayserver:s14"
+    image: "deep0983/gatewayserver:s14"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
