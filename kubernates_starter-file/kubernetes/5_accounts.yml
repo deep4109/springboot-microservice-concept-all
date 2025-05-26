@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: accounts
-        image: eazybytes/accounts:s12
+        image: eazybytes/accounts:s9
         ports:
         - containerPort: 8080
         env:

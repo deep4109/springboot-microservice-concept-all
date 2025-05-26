@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cards-deployment
+  name: loans-deployment
   labels:
-    app: cards
+    app: loans
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cards
+      app: loans
   template:
     metadata:
       labels:
-        app: cards
+        app: loans
     spec:
       containers:
-      - name: cards
-        image: eazybytes/cards:s12
+      - name: loans
+        image: eazybytes/loans:s9
         ports:
-        - containerPort: 9000
+        - containerPort: 8090
         env:
         - name: SPRING_APPLICATION_NAME
           valueFrom:
             configMapKeyRef:
               name: eazybank-configmap
-              key: CARDS_APPLICATION_NAME
+              key: LOANS_APPLICATION_NAME
         - name: SPRING_PROFILES_ACTIVE
           valueFrom: 
             configMapKeyRef:
@@ -44,12 +44,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cards
+  name: loans
 spec:
   selector:
-    app: cards
+    app: loans
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8090
+      targetPort: 8090
